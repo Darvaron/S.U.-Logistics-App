@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <form method="POST">
-    {% csrf_token %}
-    {{ login_form | safe}}
+{% extends 'base.html' %}
+
+<!--Login del aplicativo-->
+
+{% block titulo %}
+
+<title>Login S.U. Logistics</title>
+
+{% endblock titulo %}
+
+{% block content %}
+<form method="POST"> <!--Formulario-->
+    {% csrf_token %} <!--Seguridad-->
+    {{ login_form.as_p}}<!--Formulario-->
     <button class="btn btn-primary" type="submit">Login</button>
-    </form>
-</body>
-</html>
+</form>
+{% endblock content %}

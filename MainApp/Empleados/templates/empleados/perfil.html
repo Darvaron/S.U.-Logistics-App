@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+
+<!--Perfil de un empleado-->
+
+<title>Perfil {{empleado.o_numero}} S.U. Logistics</title>
+
+{% endblock titulo %}
+
+{% block content %}
+{% if autorizado == True %} <!--Si se encuentra autorizado-->
+<h2>Perfil del empleado {{empleado.o_numero}}</h2>
+<button onclick="window.location.href='/'">Perfil</button>
+<!--Información del empleado-->
+<a>{{empleado.n_nombres}} {{empleado.n_apellido1}} {{empleado.n_apellido2}}</a>
+<a>{{empleado.o_numero}}</a>
+<a>{{empleado.o_cargo}}</a>
+<a>{{empleado.o_zona}}</a>
+<a>{{empleado.n_departamento}}, {{empleado.n_municipio}}</a>
+<img src="{% static 'imagenesEmpleados/' %}{{empleado.o_imagen}}"/> <!--Imagen del empleado-->
+<a>Valor de ventase: {{ventas}}</a>
+<a>Teléfono: {{empleado.o_telefono}}</a>
+<a>Email: {{empleado.o_email}}</a>
+<a>Fecha de nacimiento: {{empleado.f_nacimiento}}</a>
+<a>Cédula: {{empleado.k_cedula}}</a>
+<a>Genero: {{empleado.i_genero}}</a>
+<a>Fecha de ingreso: {{empleado.f_ingreso}}</a>
+
+{% if superior == True and jefe != None %} <!--Si el jefe existe y es de un rango superior-->
+<a>Jefe:</a>
+<a>{{jefe.n_nombres}} {{jefe.n_apellido1}} {{jefe.n_apellido2}}</a>
+{% else %} <!--En caso contrario-->
+{% if jefe != None %} <!--Si el jefe existe muestra la palabra jefe-->
+<a>Jefe:</a>
+<a href="../../perfil/{{jefe.o_numero}}">{{jefe.n_nombres}} {{jefe.n_apellido1}} {{jefe.n_apellido2}}</a>
+{% endif %}
+{% endif %}
+{% if subalternos|length >= 1 %} <!--Si tiene subalternos-->
+<table>
+    <thead>
+    <tr>
+        <td>Nombre</td>
+        <td>Ventas</td>
+    </tr>
+    </thead>
+
+    {% for nombre, apellido1, apellido2, numero, ventas in subalternos %} <!--Obtiene nombre completo, número y ventas por cada subalterno
+    e itera en cada uno de ellos generando las filas en la tabla
+    -->
+    <tr>
+        <td>
+            <a href="../../perfil/{{numero}}">{{nombre}} {{apellido1}} {{apellido2}}</a>
+            <!--Link al perfil del subalterno en cuestión-->
+        </td>
+        <td>{{ventas}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endif %}
+<button onclick="window.location.href='/logout'">Cerrar sesión</button>
+{% else %} <!--No se encuentra autorizado para ingresar a dicho perfil por ser de un rango inferior-->
+<button onclick="window.location.href='/'">Perfil</button>
+<h1>USUARIO NO AUTORIZADO</h1>
+{% endif %}
+{% endblock content %}

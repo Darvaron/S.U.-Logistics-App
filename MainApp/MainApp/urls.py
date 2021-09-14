@@ -20,7 +20,8 @@ from django.urls import path, include
 Manejo de todas las URLs asociadas al aplicativo web, incluye todas las URLs de todas las aplicaciones
 '''
 
+# URLs asociadas al proyecto
 urlpatterns = [
-    path('', include('Empleados.urls'), name='Empleado'),
-    path('admin/', admin.site.urls),
+    path('', include('Empleados.urls'), name='Empleado'),  # Manejo de empleados
+    path('admin/', admin.site.urls),  # URLs administrativas
 ]

@@ -9,10 +9,12 @@ CONTIENE:
 - Empleado: Contiene el modelo de empleado
 '''
 
+
 class EmpleadoManager(BaseUserManager):
     '''
     Clase correspondiente al manejador del empleado, extiende del manejador de usuario por defecto de Django
     '''
+
     def create_user(self, n_nombres, n_apellido1, n_apellido2, k_cedula, f_nacimiento,
                     i_genero, f_ingreso, o_numero, o_cargo, o_jefe, o_zona, n_municipio,
                     n_departamento, v_ventas2019, o_email, password, o_imagen, o_telefono):
@@ -110,10 +112,10 @@ class Empleado(AbstractBaseUser):
                        i_genero, f_ingreso, o_numero, o_cargo, o_jefe, o_zona, n_municipio,
                        n_departamento, v_ventas2019, o_imagen, o_telefono]
 
-    def get_email(self): # Retorna el email del usuario
+    def get_email(self):  # Retorna el email del usuario
         return self.o_email
 
-    def __str__(self): # Retorna el email del usuario por medio de __str__
+    def __str__(self):  # Retorna el email del usuario por medio de __str__
         return self.o_email
 
     def has_perm(self, perm, obj=None):

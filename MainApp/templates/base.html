@@ -1,0 +1,25 @@
+<!--Plantilla de HTML usada en todos los demás HTML, contiene dos bloques dispuestos para su modificación
+en los demás HTML
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    {% block titulo %} <!-- Bloque del encabezado -->
+    <title>S.U. Logistics</title>
+    {% endblock titulo %}
+</head>
+<body>
+<h1>S.U. Logistics</h1>
+<h3>Por favor tenga en cuenta que los tiempos de carga de las páginas se ven limitados por la velocidad de la base de
+    datos
+    remota, dicha base al ser gratuita tiene recursos compartidos por lo que limita la velocidad del aplicativo, esta
+    demora se nota con más facilidad en perfiles con muchos subalternos (recursivos) como 5700079.</h3>
+{%block content %} <!-- Bloque del cuerpo -->
+
+{% endblock content %}
+
+{{my_html|safe}}
+</body>
+</html>
