@@ -21,7 +21,8 @@ Ingrese a la dirección proporcionada para dicho fin (e.g. http://127.0.0.1:8000
 Este aplicativo usa una base de datos mysql alojada en: **https://console.clever-cloud.com/**  
   
 Para el modelamiento de la base de datos se hizo uso de Enterprise Architect, en la carpeta DB se encuentra:  
-- Modelo relacional (Tenga en cuenta que no se encuentran en dicho modelo los campos requeridos por Django para usuarios como *is_active*, entre otros)
+- Modelo relacional (Tenga en cuenta que no se encuentran en dicho modelo los campos requeridos por Django para usuarios como *is_active*, entre otros)  
+**TENGA EN CUENTA QUE DICHA BASE DE DATOS AL SER GRATUITA NO PERMITE MÁS DE 5 CONEXIONES AL MISMO TIEMPO.**  
 - Script que contiene la visualización de la base de datos (Debe conectarse usando la respectiva configuración que se presenta acontinuación usando MySQL Workbench):
 ```
         'NAME': 'bunmran84krjxio4vd1m'
