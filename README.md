@@ -8,7 +8,10 @@ pip install -r requirements.txt
 
 # URL Donde se encuentra desplegada la aplicación:
 ```
+http://darvaron.pythonanywhere.com/
 ```
+Ingrese un usuario y contraseña, asegurese de que este escrita correctamente, de lo contrario no le permitirá ingresar.  
+
 # Documentación
 ### ¿Cómo ejecutar localmente?
 Para inicar Django use el siguiente comando en la carpeta LogisticsApp:  
