@@ -10,59 +10,93 @@
 {% endblock titulo %}
 
 {% block content %}
+<button class="btn btn-info ml-2" onclick="window.location.href='/'"><h2 class="display4">PERFIL</h2></button>
 {% if autorizado == True %} <!--Si se encuentra autorizado-->
-<h2>Perfil del empleado {{empleado.o_numero}}</h2>
-<button onclick="window.location.href='/'">Perfil</button>
-<!--Información del empleado-->
-<a>{{empleado.n_nombres}} {{empleado.n_apellido1}} {{empleado.n_apellido2}}</a>
-<a>{{empleado.o_numero}}</a>
-<a>{{empleado.o_cargo}}</a>
-<a>{{empleado.o_zona}}</a>
-<a>{{empleado.n_departamento}}, {{empleado.n_municipio}}</a>
-<img src="{% static 'imagenesEmpleados/' %}{{empleado.o_imagen}}"/> <!--Imagen del empleado-->
-<a>Valor de ventase: {{ventas}}</a>
-<a>Teléfono: {{empleado.o_telefono}}</a>
-<a>Email: {{empleado.o_email}}</a>
-<a>Fecha de nacimiento: {{empleado.f_nacimiento}}</a>
-<a>Cédula: {{empleado.k_cedula}}</a>
-<a>Genero: {{empleado.i_genero}}</a>
-<a>Fecha de ingreso: {{empleado.f_ingreso}}</a>
+<center>
+    <h2 class="display-4">Perfil del empleado {{empleado.o_numero}}</h2>
+    <h5>{{empleado.n_nombres}} {{empleado.n_apellido1}} {{empleado.n_apellido2}}</h5>
+</center>
+<div class="container-jumbotron text-center">
+    <center>
+        <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm float-sm-right">
+                <img src="{% static 'imagenesEmpleados/' %}{{empleado.o_imagen}}"
+                     class="border border-dark rounded" style="width: 30%; display: block;"/> <!--Imagen del empleado-->
+            </div>
+            <div class="col-sm my-auto text-justify">
+                <h5>{{empleado.o_cargo}}</h5>
+                <h5>{{empleado.o_zona}}</h5>
+                <h5>{{empleado.n_departamento}}, {{empleado.n_municipio}}</h5>
+            </div>
+            <div class="col-sm tp-2"></div>
+        </div>
+    </center>
+    <!--Información del empleado-->
+    <center>
+        <div class="bg-success text-white mt-2" style="width: 30%; center;">
+            <h5>Valor de ventas: {{ventas}}</h5>
+        </div>
+    </center>
+    <h5>Teléfono: {{empleado.o_telefono}}</h5>
+    <h5>Email: {{empleado.o_email}}</h5>
+    <h5>Fecha de nacimiento: {{empleado.f_nacimiento}}</h5>
+    <h5>Cédula: {{empleado.k_cedula}}</h5>
+    <h5>Genero: {{empleado.i_genero}}</h5>
+    <h5>Fecha de ingreso: {{empleado.f_ingreso}}</h5>
 
-{% if superior == True and jefe != None %} <!--Si el jefe existe y es de un rango superior-->
-<a>Jefe:</a>
-<a>{{jefe.n_nombres}} {{jefe.n_apellido1}} {{jefe.n_apellido2}}</a>
-{% else %} <!--En caso contrario-->
-{% if jefe != None %} <!--Si el jefe existe muestra la palabra jefe-->
-<a>Jefe:</a>
-<a href="../../perfil/{{jefe.o_numero}}">{{jefe.n_nombres}} {{jefe.n_apellido1}} {{jefe.n_apellido2}}</a>
-{% endif %}
-{% endif %}
-{% if subalternos|length >= 1 %} <!--Si tiene subalternos-->
-<table>
-    <thead>
-    <tr>
-        <td>Nombre</td>
-        <td>Ventas</td>
-    </tr>
-    </thead>
+    {% if superior == True and jefe != None %} <!--Si el jefe existe y es de un rango superior-->
+    <center>
+        <div class="bg-info text-white m-2" style="width: 30%; center;">
+            <h5>Jefe:</h5>
+        </div>
+    </center>
+    <h5>{{jefe.n_nombres}} {{jefe.n_apellido1}} {{jefe.n_apellido2}}</h5>
+    {% else %} <!--En caso contrario-->
+    {% if jefe != None %} <!--Si el jefe existe muestra la palabra jefe-->
+    <h5>Jefe:</h5>
+    <a href="../../perfil/{{jefe.o_numero}}"><h5>{{jefe.n_nombres}} {{jefe.n_apellido1}} {{jefe.n_apellido2}}</h5></a>
+    {% endif %}
+    {% endif %}
+    {% if subalternos|length >= 1 %} <!--Si tiene subalternos-->
+    <div class="container jumbotron p-0" style="width: 50%;table-layout: fixed;">
+        <center>
+            <table class="table table-striped p-0" style="text-align:center;"> <!--Tabla-->
+                <thead>
+                <div class="text-center">
+                    <tr>
+                        <th scope="col" style="width: 50%;"><h5>Nombre</h5></th>
+                        <th scope="col"><h5>Ventas</h5></th>
+                    </tr>
+                </div>
+                </thead>
 
-    {% for nombre, apellido1, apellido2, numero, ventas in subalternos %} <!--Obtiene nombre completo, número y ventas por cada subalterno
-    e itera en cada uno de ellos generando las filas en la tabla
-    -->
-    <tr>
-        <td>
-            <a href="../../perfil/{{numero}}">{{nombre}} {{apellido1}} {{apellido2}}</a>
-            <!--Link al perfil del subalterno en cuestión-->
-        </td>
-        <td>{{ventas}}</td>
-    </tr>
-    {% endfor %}
+                {% for nombre, apellido1, apellido2, numero, ventas in subalternos %} <!--Obtiene nombre completo, número y ventas por cada subalterno
+    e itera en cada uno de ellos generando las filas en la tabla-->
+                <tr>
+                    <div class="text-center">
+                        <td>
+                            <a href="../../perfil/{{numero}}"><h5>{{nombre}} {{apellido1}} {{apellido2}}</h5></a>
+                            <!--Link al perfil del subalterno en cuestión-->
+                        </td>
+                    </div>
+                    <div class="text-center">
+                        <td><h5>{{ventas}}</h5></td>
+                    </div>
+                </tr>
+                {% endfor %}
 
-</table>
+            </table>
+        </center>
+    </div>
+</div>
 {% endif %}
-<button onclick="window.location.href='/logout'">Cerrar sesión</button>
+<button class="btn btn-danger ml-2 mb-2" onclick="window.location.href='/logout'"><h2 class="display4 ml-2">CERRAR
+    SESIÓN</h2>
+</button>
 {% else %} <!--No se encuentra autorizado para ingresar a dicho perfil por ser de un rango inferior-->
-<button onclick="window.location.href='/'">Perfil</button>
-<h1>USUARIO NO AUTORIZADO</h1>
+<center>
+    <h2 class="display-4">USUARIO NO AUTORIZADO</h2>
+</center>
 {% endif %}
 {% endblock content %}

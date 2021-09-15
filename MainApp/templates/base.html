@@ -9,17 +9,30 @@ en los demás HTML
     {% block titulo %} <!-- Bloque del encabezado -->
     <title>S.U. Logistics</title>
     {% endblock titulo %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<h1>S.U. Logistics</h1>
-<h3>Por favor tenga en cuenta que los tiempos de carga de las páginas se ven limitados por la velocidad de la base de
-    datos
-    remota, dicha base al ser gratuita tiene recursos compartidos por lo que limita la velocidad del aplicativo, esta
-    demora se nota con más facilidad en perfiles con muchos subalternos (recursivos) como 5700079.</h3>
-{%block content %} <!-- Bloque del cuerpo -->
+<div class="container-fluid">
+    <div class="row bg-dark text-warning text-centered pl-2">
+        <h1>S.U. Logistics</h1>
+    </div>
+</div>
 
-{% endblock content %}
+<div class="text-justify bg-success text-white pl-2 pr-2">
+    <p>Por favor tenga en cuenta que los tiempos de carga de las páginas se ven limitados por la velocidad de la
+        base de datos remota, dicha base al ser gratuita tiene recursos compartidos por lo que limita la velocidad del
+        aplicativo,
+        esta demora se nota con más facilidad en perfiles con muchos subalternos (recursivos) como 5700079.</p>
+</div>
+    {%block content %} <!-- Bloque del cuerpo -->
 
+    {% endblock content %}
+
+<!--
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>-->
 {{my_html|safe}}
 </body>
 </html>
